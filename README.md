@@ -43,7 +43,7 @@ Wrapper class for grouping some behaviour tests
     ]
 }</pre></code>
 **Output JSON** <br/>
-<pre><code>{{
+<pre><code>{
       { "formula": "abs(12) > 3000", "triggered":False, "metadata": {} },
       ...
       { "formula": "(abs(25)>0 AND 0=0), "triggered":True, "metadata": {"reference": "49900001", "survey": "099", "period": "201409" } 
