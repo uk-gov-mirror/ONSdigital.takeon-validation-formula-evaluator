@@ -35,6 +35,8 @@ package:
   #  - test/**
   #  - Docs/**
    - node_modules/**
+   - .pytest_cache/**
+   - __pycache__/**
 
 
 functions:

@@ -5,17 +5,29 @@ import boto3
 
 
 def lambda_handler(event, context):
-    output = run(extract_json_input(event))
-    output_to_queue(output)
+    try:
+        output = run(extract_json_input(event))
+        output_to_queue(output)
+    except KeyError as error:
+        print("Wrong or missing key in JSON: " + error)
+    except ValueError as error:
+        print("Incorrect value: " + error)
+    except ZeroDivisionError as error:
+        print("Cannot divide by zero: " + error)
+    except NameError as error:
+        print("Missing variable: " + error)
+    except SyntaxError as error:
+        print("Incorrect syntax: " + error)
+    except Exception as error:
+        print("Something went wrong: " + error)
     return dict(statusCode=200, body=json.dumps(output))
 
 
 def extract_json_input(input_data):
-    if "body" in input_data["Records"][0]:
+    if "Records" in input_data:
         return json.loads(input_data["Records"][0]["body"])
     else:
         return input_data
-
 
 def output_to_queue(output):
     queue_url = os.getenv("OUTPUT_QUEUE_URL")
@@ -29,6 +41,6 @@ def output_to_queue(output):
 #   {"formula": "(abs(25)>0 AND 0=0), "metadata": {"reference": "49900001"
 # , "survey": "099", "period": "201409"} ] }
 #
-# However, when called through the API Gateway this is embedded within a 
+# However, when called through the API Gateway this is embedded within a
 # 'body' of a more complicated JSON structure
 #
