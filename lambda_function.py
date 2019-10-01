@@ -8,19 +8,20 @@ def lambda_handler(event, context):
     try:
         output = run(extract_json_input(event))
         output_to_queue(output)
-    except KeyError as error:
-        print("Wrong or missing key in JSON: " + error)
-    except ValueError as error:
-        print("Incorrect value: " + error)
-    except ZeroDivisionError as error:
-        print("Cannot divide by zero: " + error)
-    except NameError as error:
-        print("Missing variable: " + error)
-    except SyntaxError as error:
-        print("Incorrect syntax: " + error)
-    except Exception as error:
-        print("Something went wrong: " + error)
-    return dict(statusCode=200, body=json.dumps(output))
+        return dict(statusCode=200, body=json.dumps(output))
+    except KeyError:
+        return "Wrong or missing key in JSON"
+    except ValueError:
+        return "Incorrect value"
+    except ZeroDivisionError:
+        return "Cannot divide by zero"
+    except NameError:
+        return "Missing variable"
+    except SyntaxError:
+        return "Incorrect syntax"
+    except Exception:
+        return "Something went wrong"
+    
 
 
 def extract_json_input(input_data):
@@ -28,6 +29,7 @@ def extract_json_input(input_data):
         return json.loads(input_data["Records"][0]["body"])
     else:
         return input_data
+
 
 def output_to_queue(output):
     queue_url = os.getenv("OUTPUT_QUEUE_URL")
