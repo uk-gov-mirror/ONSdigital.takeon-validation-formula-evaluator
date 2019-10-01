@@ -48,6 +48,7 @@ functions:
     environment:
       INPUT_QUEUE_URL: ${file(./vars.json):INPUT_QUEUE_URL}
       OUTPUT_QUEUE_URL: ${file(./vars.json):OUTPUT_QUEUE_URL}
+      ERROR_QUEUE_URL: ${file(./vars.json):ERROR_QUEUE_URL}
     # vpc:
     #   securityGroupIds:
     #     - ${file(./config.dev.json):SECURITY_GROUP_ID}

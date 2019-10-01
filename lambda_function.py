@@ -10,17 +10,29 @@ def lambda_handler(event, context):
         output_to_queue(output)
         return dict(statusCode=200, body=json.dumps(output))
     except KeyError:
-        return "Wrong or missing key in JSON"
+        errorMessage = "Wrong or missing key in JSON"
+        error_queue(errorMessage)
+        return errorMessage
     except ValueError:
-        return "Incorrect value"
+        errorMessage = "Incorrect value"
+        error_queue(errorMessage)
+        return errorMessage
     except ZeroDivisionError:
-        return "Cannot divide by zero"
+        errorMessage = "Cannot divide by zero"
+        error_queue(errorMessage)
+        return errorMessage
     except NameError:
-        return "Missing variable"
+        errorMessage = "Missing variable"
+        error_queue(errorMessage)
+        return errorMessage
     except SyntaxError:
-        return "Incorrect syntax"
-    except Exception:
-        return "Something went wrong"
+        errorMessage = "Incorrect syntax"
+        error_queue(errorMessage)
+        return errorMessage
+    except Exception as error:
+        errorMessage = "Something went wrong" + error
+        error_queue(errorMessage)
+        return errorMessage
     
 
 
@@ -35,6 +47,11 @@ def output_to_queue(output):
     queue_url = os.getenv("OUTPUT_QUEUE_URL")
     sqs = boto3.client("sqs")
     sqs.send_message(QueueUrl=queue_url, MessageBody=json.dumps(output))
+
+def error_queue(errorMessage):
+    queue_url = os.getenv("ERROR_QUEUE_URL")
+    sqs = boto3.client("sqs")
+    sqs.send_message(QueueUrl=queue_url, MessageBody=errorMessage) 
 
 
 # Assumed input format:
