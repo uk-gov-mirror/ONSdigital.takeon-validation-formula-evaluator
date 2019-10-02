@@ -58,5 +58,5 @@ functions:
       - sqs:
          arn: ${file(./serverless-config.json):INPUT_QUEUE_ARN}
          batchSize: 1
-    timeout: 30
+    timeout: 3
     memorySize: 512

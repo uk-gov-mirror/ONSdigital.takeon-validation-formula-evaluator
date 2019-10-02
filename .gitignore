@@ -105,7 +105,6 @@ venv.bak/
 .mypy_cache/
 
 # serverless
-vars.json
 node_modules
 package-lock.json
 .serverless/cloudformation-template-create-stack.json
