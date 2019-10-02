@@ -33,7 +33,6 @@ def lambda_handler(event, context):
         errorMessage = "Something went wrong" + error
         error_queue(errorMessage)
         return errorMessage
-    
 
 
 def extract_json_input(input_data):
@@ -48,10 +47,11 @@ def output_to_queue(output):
     sqs = boto3.client("sqs")
     sqs.send_message(QueueUrl=queue_url, MessageBody=json.dumps(output))
 
+
 def error_queue(errorMessage):
     queue_url = os.getenv("ERROR_QUEUE_URL")
     sqs = boto3.client("sqs")
-    sqs.send_message(QueueUrl=queue_url, MessageBody=errorMessage) 
+    sqs.send_message(QueueUrl=queue_url, MessageBody=errorMessage)
 
 
 # Assumed input format:
