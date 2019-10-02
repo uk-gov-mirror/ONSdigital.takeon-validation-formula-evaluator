@@ -5,32 +5,33 @@ import boto3
 
 
 def lambda_handler(event, context):
+    lambdaName = "Formula Evaluator: "
     try:
         output = run(extract_json_input(event))
         output_to_queue(output)
         return dict(statusCode=200, body=json.dumps(output))
     except KeyError:
-        errorMessage = "Wrong or missing key in JSON"
+        errorMessage = lambdaName + "Wrong or missing key in JSON"
         error_queue(errorMessage)
         return errorMessage
     except ValueError:
-        errorMessage = "Incorrect value"
+        errorMessage = lambdaName + "Incorrect value"
         error_queue(errorMessage)
         return errorMessage
     except ZeroDivisionError:
-        errorMessage = "Cannot divide by zero"
+        errorMessage = lambdaName + "Cannot divide by zero"
         error_queue(errorMessage)
         return errorMessage
     except NameError:
-        errorMessage = "Missing variable"
+        errorMessage = lambdaName + "Missing variable"
         error_queue(errorMessage)
         return errorMessage
     except SyntaxError:
-        errorMessage = "Incorrect syntax"
+        errorMessage = lambdaName + "Incorrect syntax"
         error_queue(errorMessage)
         return errorMessage
     except Exception as error:
-        errorMessage = "Something went wrong" + error
+        errorMessage = lambdaName + "Something went wrong" + error
         error_queue(errorMessage)
         return errorMessage
 
