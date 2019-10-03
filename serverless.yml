@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: takeon-reformulator # NOTE: update this with your service name
+service: TakeOn-Validation-Formula-Evaluate # NOTE: update this with your service name
 #app: your-app-name
 #tenant: your-tenant-name
 
@@ -42,13 +42,13 @@ package:
 functions:
   main:
     handler: lambda_function.lambda_handler
-    role: ${file(./serverless-config.json):EXECUTION_ROLE_ARN}
+    role: ${file(./serverless.config.json):EXECUTION_ROLE_ARN}
     # layers:
     #   - 
     environment:
-      INPUT_QUEUE_URL: ${file(./serverless-config.json):INPUT_QUEUE_URL}
-      OUTPUT_QUEUE_URL: ${file(./serverless-config.json):OUTPUT_QUEUE_URL}
-      ERROR_QUEUE_URL: ${file(./serverless-config.json):ERROR_QUEUE_URL}
+      INPUT_QUEUE_URL: ${file(./serverless.config.json):INPUT_QUEUE_URL}
+      OUTPUT_QUEUE_URL: ${file(./serverless.config.json):OUTPUT_QUEUE_URL}
+      ERROR_QUEUE_URL: ${file(./serverless.config.json):ERROR_QUEUE_URL}
     # vpc:
     #   securityGroupIds:
     #     - ${file(./config.dev.json):SECURITY_GROUP_ID}
@@ -56,7 +56,7 @@ functions:
     #     - ${file(./config.dev.json):SUBNET_ID}
     events:
       - sqs:
-         arn: ${file(./serverless-config.json):INPUT_QUEUE_ARN}
+         arn: ${file(./serverless.config.json):INPUT_QUEUE_ARN}
          batchSize: 1
     timeout: 3
     memorySize: 512

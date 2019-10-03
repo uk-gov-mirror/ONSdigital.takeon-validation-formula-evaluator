@@ -112,4 +112,4 @@ package-lock.json
 .serverless/serverless-state.json
 .serverless/takeon-reformulator.zip
 .gitignore
-serverless-config.json
+serverless.config.json
