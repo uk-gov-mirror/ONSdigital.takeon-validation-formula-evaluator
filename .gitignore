@@ -103,3 +103,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# serverless
+node_modules
+package-lock.json
+.serverless/cloudformation-template-create-stack.json
+.serverless/cloudformation-template-update-stack.json
+.serverless/serverless-state.json
+.serverless/takeon-reformulator.zip
+.gitignore
+serverless.config.json
