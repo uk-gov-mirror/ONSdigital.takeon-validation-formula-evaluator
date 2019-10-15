@@ -42,7 +42,7 @@ package:
 functions:
   main:
     handler: lambda_function.lambda_handler
-    role: ${file(./serverless.config.json):EXECUTION_ROLE_ARN}
+    role: ${file(./serverless-config.json):EXECUTION_ROLE_ARN}
     # layers:
     #   - 
     environment:
