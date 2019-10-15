@@ -5,7 +5,7 @@ resources:
     icon: github-circle
     source:
       uri: https://github.com/ONSdigital/takeon-validation-formula-evaluator
-      branch: LU-3017-concourse-pipeline
+      branch: LU-3017-lambda-pipeline
 #  - name: base-python-image
 #    type: docker-image
 #    icon: language-python
@@ -16,7 +16,7 @@ resources:
     type: docker-image
     icon: docker
     source:
-      repository: ((ecr_repository))
+      repository: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-validation-formula-evaluator
       aws_access_key_id: ((concourse-svc-user.api-key))
       aws_secret_access_key: ((concourse-svc-user.api-secret))
 
@@ -60,7 +60,7 @@ jobs:
           image_resource:
             type: docker-image
             source:
-              repository: ((ecr_repository))
+              repository: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-validation-formula-evaluator
               aws_access_key_id: ((concourse-svc-user.api-key))
               aws_secret_access_key: ((concourse-svc-user.api-secret))
           inputs:
@@ -89,7 +89,7 @@ jobs:
           image_resource:
             type: docker-image
             source:
-              repository: ((ecr_repository))
+              repository: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-validation-formula-evaluator
               aws_access_key_id: ((concourse-svc-user.api-key))
               aws_secret_access_key: ((concourse-svc-user.api-secret))
           params:
