@@ -1,7 +1,7 @@
 resources:
   - name: repository
     type: git
-    check_every: 24h
+#    check_every: 24h
     icon: github-circle
     source:
       uri: ((git_repository))
