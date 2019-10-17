@@ -13,7 +13,7 @@ resources:
     icon: github-circle
     source:
       repository: ONSdigital/takeon-validation-formula-evaluator
-#      access_token: ((git_access_token))
+      access_token: ((git_access_token))
 
   - name: deploy-repository
     type: git
