@@ -47,7 +47,7 @@ Wrapper class for grouping some behaviour tests
       { "formula": "(abs(25)>0 AND 0=0), "triggered":True, "metadata": {"reference": "49900001", "survey": "099", "period": "201409" } 
 }</pre></code>
 
-## Depolyment
+## Deployment
 This repo is integrated with Concourse for 'linting-&-tests' and 'serverless deployment'.  The 'pipeline.yml' file defines the concourse pipeline which uses the 'params.yml' file for 'aws_region', 'ecr_repository' and 'git_repository'. Other parameters used in the pipeline are defined as 'secrets' in AWS.
 
 **Steps** <br/>
