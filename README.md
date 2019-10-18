@@ -48,7 +48,7 @@ Wrapper class for grouping some behaviour tests
 }</pre></code>
 
 ## Depolyment
-This repo is integrated with Concourse for 'linting-&-tests' and 'serverless deployment'.  The 'pipeline.yml' file defines the concourse pipeline which uses the 'params.yml' file for 'aws_region', 'ecr_repository' abd 'git_repository'. Other parameters used in the pipeline are defined as 'secrets' in AWS.
+This repo is integrated with Concourse for 'linting-&-tests' and 'serverless deployment'.  The 'pipeline.yml' file defines the concourse pipeline which uses the 'params.yml' file for 'aws_region', 'ecr_repository' and 'git_repository'. Other parameters used in the pipeline are defined as 'secrets' in AWS.
 
 **Steps** <br/>
 The pipeline is designed as 2 steps process -
