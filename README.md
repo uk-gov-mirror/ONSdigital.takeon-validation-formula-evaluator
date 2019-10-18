@@ -4,8 +4,6 @@ Core engine of the validation process. Evaluates each formula and returns the re
 
 **Not production code** <br/>
 No logging behaviour
-No CI/CD integration
-Not using Serverless
 No formal unit test suite
 Limited error handling
 
@@ -48,3 +46,13 @@ Wrapper class for grouping some behaviour tests
       ...
       { "formula": "(abs(25)>0 AND 0=0), "triggered":True, "metadata": {"reference": "49900001", "survey": "099", "period": "201409" } 
 }</pre></code>
+
+## Depolyment
+This repo is integrated with Concourse for 'linting-&-tests' and 'serverless deployment'.  The 'pipeline.yml' file defines the concourse pipeline which uses the 'params.yml' file for 'aws_region', 'ecr_repository' and 'git_repository'. Other parameters used in the pipeline are defined as 'secrets' in AWS.
+
+**Steps** <br/>
+The pipeline is designed as 2 steps process -
+1. If any pull request is raised in this Git Repo from any feature branch, then it will automatically trigger to run the concourse pipeline for 'linting-&-tests' on that feature branch.
+2. It will deploy the lambda as 'severless deployment' into AWS once the feature branch is merged into 'dev' branch.
+
+The commands to manually 'destroy', 'set-pipeline' and 'unpause-pipeline' are avilable in 'concourse-run.sh'

@@ -1,0 +1,3 @@
+aws_region: eu-west-2
+ecr_repository: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-validation-formula-evaluator
+git_repository: https://github.com/ONSdigital/takeon-validation-formula-evaluator
