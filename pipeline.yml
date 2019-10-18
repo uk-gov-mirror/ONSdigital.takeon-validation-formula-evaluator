@@ -93,29 +93,30 @@ jobs:
                 status: failure
                 description: Failing tests are present
 
-          - task: flake8
-            config:
-              platform: linux
-              image_resource:
-                type: docker-image
-                source:
-                  repository: ((ecr_repository))
-                  aws_access_key_id: ((concourse-svc-user.api-key))
-                  aws_secret_access_key: ((concourse-svc-user.api-secret))
-              inputs:
-                - name: repository
-              run:
-                path: sh
-                args:
-                  - -exc
-                  - |
-                    flake8 $(pwd)/repository
-            on_failure:
-              put: repository
-              params:
-                path: repository
-                status: failure
-                description: Code standards are not met
+# flake8 will be used once team uses it for development
+#          - task: flake8
+#            config:
+#              platform: linux
+#              image_resource:
+#                type: docker-image
+#                source:
+#                  repository: ((ecr_repository))
+#                  aws_access_key_id: ((concourse-svc-user.api-key))
+#                  aws_secret_access_key: ((concourse-svc-user.api-secret))
+#              inputs:
+#                - name: repository
+#              run:
+#                path: sh
+#                args:
+#                  - -exc
+#                  - |
+#                    flake8 $(pwd)/repository
+#            on_failure:
+#              put: repository
+#              params:
+#                path: repository
+#                status: failure
+#                description: Code standards are not met
 
   - name: serverless-deploy
     plan:
