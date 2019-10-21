@@ -19,7 +19,7 @@ resources:
     type: git
     check_every: 24h
     icon: github-circle
-    webhook_token: ((formula_evaluator_git_webhook_token))
+    webhook_token: ((formula_evaluator_git_webhook_token_merge))
     source:
       uri: ((git_repository))
       branch: dev
