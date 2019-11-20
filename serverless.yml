@@ -25,6 +25,7 @@ provider:
   runtime: python3.7
   region: eu-west-2
   stage: dev
+  deploymentBucket: takeon.validation.deployment
 
 package:
  exclude:
