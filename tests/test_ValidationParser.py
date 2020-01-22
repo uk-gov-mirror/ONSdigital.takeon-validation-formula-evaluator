@@ -1,4 +1,3 @@
-import time
 from ValidationParser import ValidationParser
 
 
